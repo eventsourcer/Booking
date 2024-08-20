@@ -1,5 +1,6 @@
 using Confluent.Kafka;
 using Confluent.Kafka.SyncOverAsync;
+using Confluent.SchemaRegistry;
 using Confluent.SchemaRegistry.Serdes;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,9 +10,13 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// builder.Services.AddSingleton<ISchemaRegistryClient>(new CachedSchemaRegistryClient(
+//     builder.Configuration.GetSection("SchemaRegistry").Get<SchemaRegistryConfig>()
+// ));
 builder.Services.AddSingleton<IConsumer<string, Order>>(sp =>
 {
     var config = builder.Configuration.GetSection("Consumer").Get<ConsumerConfig>();
+    // var schemaRegistry = sp.GetRequiredService<ISchemaRegistryClient>();
     return new ConsumerBuilder<string, Order>(config)
         .SetValueDeserializer(new JsonDeserializer<Order>().AsSyncOverAsync()).Build();
 });
