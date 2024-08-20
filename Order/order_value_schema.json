@@ -1,0 +1,37 @@
+{
+  "title": "Orders",
+  "type": "object",
+  "properties": {
+    "address": {
+      "properties": {
+        "city": {
+          "type": "string"
+        },
+        "zipcode": {
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "itemid": {
+      "description": "The string type is used for strings of text.",
+      "type": "string"
+    },
+    "orderid": {
+      "description": "The integer type is used for integral numbers.",
+      "type": "integer"
+    },
+    "orderquantity": {
+      "description": "The number type is used for any numeric type, either integers or floating point numbers.",
+      "type": "number"
+    },
+    "ordertime": {
+      "description": "The integer type is used for integral numbers.",
+      "type": "integer"
+    },
+    "status": {
+      "description": "The number type is used for any numeric type, either integers or floating point numbers.",
+      "type": "number"
+    }
+  }
+}
